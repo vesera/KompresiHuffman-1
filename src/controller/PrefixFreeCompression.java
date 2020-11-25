@@ -75,8 +75,12 @@ public class PrefixFreeCompression {
         
     }
     
-    public void rangkaianFinalDataKompresi(){
+    public void charToBinary(){
         
+    }
+    
+    public void rangkaianFinalDataKompresi(){
+        //(Trie+ASCII) 
     }
     
     public void totalByteTeksSebelumKompresi(){
