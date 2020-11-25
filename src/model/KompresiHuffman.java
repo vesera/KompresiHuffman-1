@@ -12,7 +12,7 @@ import view.simpleView;
  */
 public class KompresiHuffman {
     public static void main(String[] args) {
-        newView View = new view.newView();
+        simpleView View = new view.simpleView();
         View.setVisible(true);
     }
 }

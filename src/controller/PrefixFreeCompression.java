@@ -61,5 +61,25 @@ public class PrefixFreeCompression {
             prefix += prefixData[i] + "\n";
         }
         View.setHuffman(prefix);
-    }        
+    }
+    
+    public void pembentukanTrie(){
+        
+    }
+    
+    public void pembentukanFreeCode(){
+        
+    }
+    
+    public void rangkaianFinalDataKompresi(){
+        
+    }
+    
+    public void totalByteTeksSebelumKompresi(){
+        
+    }
+    
+    public void totalByteHasilFinalKompresi(){
+        
+    }
 }
