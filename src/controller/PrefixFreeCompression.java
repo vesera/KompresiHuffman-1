@@ -64,10 +64,14 @@ public class PrefixFreeCompression {
     }
     
     public void pembentukanTrie(){
+        //
+        
         
     }
     
-    public void pembentukanFreeCode(){
+    public void pembentukanPreFixCode(){
+        //Prefix = Root, L, R
+        
         
     }
     
