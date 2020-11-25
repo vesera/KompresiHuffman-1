@@ -64,30 +64,34 @@ public class PrefixFreeCompression {
     }
     
     public void pembentukanTrie(){
-        //
+        //preorder
         
         
     }
     
     public void pembentukanPreFixCode(){
         //Prefix = Root, L, R
+        //left=0, right=1
         
         
     }
     
     public void charToBinary(){
+        //char to ASCII
+        //https://www.daniweb.com/programming/software-development/threads/477895/ascii-to-binary
         
     }
     
     public void rangkaianFinalDataKompresi(){
-        //(Trie+ASCII) 
+        //for(Trie+ASCII) +
     }
     
     public void totalByteTeksSebelumKompresi(){
-        
+        //ini mah for aja, ada berapa dataSize
     }
     
     public void totalByteHasilFinalKompresi(){
-        
+        //hasilKompresiByte=jumlah banyaknya Byte rangkaianFinalDataKompresi / 8
+        //pengemetan persentase = 100-(hasilByte/totalByteTeksSebelumKompresi)*100
     }
 }
