@@ -134,5 +134,7 @@ public class PrefixFreeCompression {
         //pengemetan persentase = 100-(hasilByte/totalByteTeksSebelumKompresi)*100
         
         
+        //penghematan_persentase = 100-(totalByteTeksSebelumKompresi/hasilKompresiByte)*100
+        //return penghematan_persentase
     }
 }
