@@ -47,7 +47,7 @@ public class newView extends JFrame {
         inputJudul.setBounds(200, 10, 600, 30);
         add(inputJudul);
         
-        inputLabel = new JLabel("input(Text): ");
+        inputLabel = new JLabel("Input(Text): ");
         inputLabel.setBounds(50, 70, 200, 30);
         
         inputData = new JTextField();
@@ -67,7 +67,10 @@ public class newView extends JFrame {
                     JOptionPane.showMessageDialog(null, "Text Belum di isi!");
                     
                 }else{
-                    inputData.getText();
+//                    inputData.getText();
+                    PrefixFreeCompression prefixFree = new controller.PrefixFreeCompression();
+                    prefixFree.Compression(inputData.getText());
+//                    prefixFreePane.setText(inputData.getText());
                 }
             }
         });

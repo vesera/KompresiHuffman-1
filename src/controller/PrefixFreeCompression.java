@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import model.HuffmanTree;
 import view.newView;
-import view.simpleView;
 
 /**
  *
@@ -19,67 +18,94 @@ public class PrefixFreeCompression {
 //    
 //    Declare Class that are going to be used for
 //    
-    simpleView View = new view.simpleView();
+    newView View = new view.newView();
 //    HuffmanTree Tree = new model.HuffmanTree();
     
-    public void Compression(){
+    public void Compression(String inpData){
 //        
 //        Declaring all the variable that will be used in this class
 //        
-        String inpData = View.get_txt();
+//        String inpData = View.get;
         System.out.println(inpData);
-        char[] arrData = inpData.toCharArray();
+//        char[] arrData = inpData.toCharArray();
         int[] prefixData = null;
-        int[] occurance = null;
+//        int[] occurance = null;
+//        ArrayList<Integer> occurance = new ArrayList<Integer>();
         int dataSize = inpData.length();
         String prefix = "";
-        Integer arrHuffmanString[] = new Integer[dataSize];
-        ArrayList<Character> checkedData = new ArrayList<Character>();
+        HashMap<Character, Integer> map = new HashMap<>();
+//        Integer arrHuffmanString[] = new Integer[dataSize];
+//        ArrayList<Character> checkedData = new ArrayList<Character>();
         
 //        
 //        Looping to check the String given has many uniques characters and occurances
 //        
-        for(int i = 0; i < dataSize; i++){
-            if(checkedData.size() == 0){
-                checkedData.add(arrData[i]);
-            }
-            for(int j = 0; j < checkedData.size(); j++){
-                if (arrData[i] == checkedData.get(j)){
-                    occurance[j] += 1;
-                }
-                else{
-                    checkedData.set(j+1, arrData[i]);
-                }
-            }
-        }
+        
 //        
-//        Setting up the characters that are going to be converted into ASCII to the JavaTextField
+//        Sorting the ArrayList karena data yang disimpan variabel occurance dan checkedData urut dengan urutan masuknya
 //        
-        for(int i = 0; i < dataSize; i++){
-            prefixData[i] = (int) arrData[i];
-            prefix += prefixData[i] + "\n";
-        }
-        View.setHuffman(prefix);
-    }
-    
-    public HashMap<Character, Integer> initMapCharacter(String text) {
-        HashMap<Character, Integer> map = new HashMap<>();
-
-        for (char character : text.toCharArray()) {
-            if (!map.containsKey(character)) {
+        for(char character : inpData.toCharArray()){
+            if(!map.containsKey(character)){
                 map.put(character, 1);
-            } else {
+            }
+            else{
                 map.put(character, (map.get(character) + 1));
             }
         }
 
-        return map;
+        pembentukanTrie(map);
+//
+//        Setting up the characters that are going to be converted into ASCII to the JavaTextField
+//        
+//        
     }
     
-    public void pembentukanTrie(){
+
+    
+    public void pembentukanTrie(HashMap<Character, Integer> map){
         //preorder
         
+        HashMap<Character, Integer> tree = new HashMap<Character, Integer>();
+        HashMap<Character, Integer> checkMap = new HashMap<Character, Integer>();
         
+        int lowest1 = 100, lowest2 = 100;
+        boolean isFinished = false;
+        
+        while(isFinished == false){
+            for(char i : map.keySet()){
+                if(map.get(i) < lowest1){
+                    lowest1 = map.get(i);
+                }
+                else{
+                    if(map.get(i) < lowest2){
+                        lowest2 = map.get(i);
+                    }
+                }
+            }
+    //        
+    //        The Second For is for inserting the data into the hasmap that will be inserted unto the Huffman Tree
+    //        
+            for(char i : map.keySet()){
+                if(map.get(i) == lowest1){
+                    tree.put(i, map.get(i));
+                }
+                if(map.get(i) == lowest2){
+                    tree.put(i, map.get(i));
+                }
+            }
+
+            System.out.println(tree);
+
+            for(char i : tree.keySet()){
+                checkMap.put(i, tree.get(i));
+            }
+
+            tree.clear();
+            
+            if(map == checkMap){
+                isFinished = true;
+            }
+        }
     }
     
     public void pembentukanPreFixCode(){
@@ -106,5 +132,7 @@ public class PrefixFreeCompression {
     public void totalByteHasilFinalKompresi(){
         //hasilKompresiByte=jumlah banyaknya Byte rangkaianFinalDataKompresi / 8
         //pengemetan persentase = 100-(hasilByte/totalByteTeksSebelumKompresi)*100
+        
+        
     }
 }

@@ -12,16 +12,25 @@ package model;
 public class HuffmanTree {
     int occurance;
     char karakter;
+    boolean isNode;
     HuffmanTree left;
     HuffmanTree right;
 
-    public HuffmanTree(int occurance,char karakter, HuffmanTree left, HuffmanTree right) {
+    public HuffmanTree(int occurance,char karakter, boolean isNode, HuffmanTree left, HuffmanTree right) {
         this.occurance = occurance;
         this.karakter = karakter;
+        this.isNode = isNode;
         this.left = left;
         this.right = right;
     }
 
+    public boolean isIsNode() {
+        return isNode;
+    }
+
+    public void setIsNode(boolean isNode) {
+        this.isNode = isNode;
+    }
 
     public int getOccurance() {
         return occurance;
