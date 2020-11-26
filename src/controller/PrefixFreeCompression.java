@@ -105,6 +105,7 @@ public class PrefixFreeCompression {
     
     public void totalByteHasilFinalKompresi(){
         //hasilKompresiByte=jumlah banyaknya Byte rangkaianFinalDataKompresi / 8
-        //pengemetan persentase = 100-(hasilByte/totalByteTeksSebelumKompresi)*100
+        //penghematan_persentase = 100-(totalByteTeksSebelumKompresi/hasilKompresiByte)*100
+        //return penghematan_persentase
     }
 }
