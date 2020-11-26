@@ -55,5 +55,12 @@ public class HuffmanTree {
         this.right = right;
     }
     
+    @Override
+    public String toString() {
+        return "Node{" + "totalAppearance=" + occurance + 
+               ", left=" + left + 
+               ", right=" + right + 
+               '}';
+    }
     
 }
