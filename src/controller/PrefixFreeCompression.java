@@ -7,7 +7,6 @@ package controller;
 import java.awt.List;
 import java.util.ArrayList;
 import model.HuffmanTree;
-import model.TreeValue;
 import view.newView;
 import view.simpleView;
 
@@ -20,8 +19,7 @@ public class PrefixFreeCompression {
 //    Declare Class that are going to be used for
 //    
     simpleView View = new view.simpleView();
-    HuffmanTree Tree = new model.HuffmanTree();
-    TreeValue TreeVal = new model.TreeValue();
+//    HuffmanTree Tree = new model.HuffmanTree();
     
     public void Compression(){
 //        

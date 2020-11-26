@@ -14,7 +14,7 @@ import javax.swing.*;
 import javax.swing.text.*;
 import java.io.*;
 import javax.imageio.ImageIO;
-import model.TreeValue;
+import model.HuffmanTree;
 
 /**
  *
