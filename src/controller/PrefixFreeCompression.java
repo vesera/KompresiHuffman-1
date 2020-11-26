@@ -6,6 +6,7 @@
 package controller;
 import java.awt.List;
 import java.util.ArrayList;
+import java.util.HashMap;
 import model.HuffmanTree;
 import view.newView;
 import view.simpleView;
@@ -59,6 +60,20 @@ public class PrefixFreeCompression {
             prefix += prefixData[i] + "\n";
         }
         View.setHuffman(prefix);
+    }
+    
+    public HashMap<Character, Integer> initMapCharacter(String text) {
+        HashMap<Character, Integer> map = new HashMap<>();
+
+        for (char character : text.toCharArray()) {
+            if (!map.containsKey(character)) {
+                map.put(character, 1);
+            } else {
+                map.put(character, (map.get(character) + 1));
+            }
+        }
+
+        return map;
     }
     
     public void pembentukanTrie(){
