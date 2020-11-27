@@ -16,13 +16,13 @@ public class HuffmanTree {
     HuffmanTree left;
     HuffmanTree right;
 
-    public HuffmanTree(int occurance,char karakter, boolean isNode, HuffmanTree left, HuffmanTree right) {
-        this.occurance = occurance;
-        this.karakter = karakter;
-        this.isNode = isNode;
-        this.left = left;
-        this.right = right;
-    }
+//    public HuffmanTree(int occurance,char karakter, boolean isNode, HuffmanTree left, HuffmanTree right) {
+//        this.occurance = occurance;
+//        this.karakter = karakter;
+//        this.isNode = isNode;
+//        this.left = left;
+//        this.right = right;
+//    }
 
     public boolean isIsNode() {
         return isNode;

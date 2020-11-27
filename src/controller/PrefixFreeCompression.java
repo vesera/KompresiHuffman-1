@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 package controller;
-import java.awt.List;
 import java.util.ArrayList;
+import java.util.PriorityQueue;
 import java.util.HashMap;
 import model.HuffmanTree;
 import view.newView;
@@ -19,23 +19,20 @@ public class PrefixFreeCompression {
 //    Declare Class that are going to be used for
 //    
     newView View = new view.newView();
-//    HuffmanTree Tree = new model.HuffmanTree();
+    
     
     public void Compression(String inpData){
 //        
 //        Declaring all the variable that will be used in this class
 //        
-//        String inpData = View.get;
         System.out.println(inpData);
-//        char[] arrData = inpData.toCharArray();
+        char[] charArray = inpData.toCharArray();
         int[] prefixData = null;
-//        int[] occurance = null;
-//        ArrayList<Integer> occurance = new ArrayList<Integer>();
+        char[] checkedData = new char[charArray.length];
+        int[] occurance = new int[checkedData.length];
         int dataSize = inpData.length();
         String prefix = "";
         HashMap<Character, Integer> map = new HashMap<>();
-//        Integer arrHuffmanString[] = new Integer[dataSize];
-//        ArrayList<Character> checkedData = new ArrayList<Character>();
         
 //        
 //        Looping to check the String given has many uniques characters and occurances
@@ -53,7 +50,7 @@ public class PrefixFreeCompression {
             }
         }
 
-        pembentukanTrie(map);
+        pembentukanTrie(map, dataSize);
 //
 //        Setting up the characters that are going to be converted into ASCII to the JavaTextField
 //        
@@ -62,56 +59,142 @@ public class PrefixFreeCompression {
     
 
     
-    public void pembentukanTrie(HashMap<Character, Integer> map){
+    public void pembentukanTrie(HashMap<Character, Integer> map, int dataSize){
         //preorder
+        
+        PriorityQueue<HuffmanTree> queue = new PriorityQueue<HuffmanTree>(dataSize, new controller.MyComparator());
+//        
+//        for(int i = 0; i < dataSize; i++){
+//            for(char j : map.keySet()){
+//                HuffmanTree ht = new HuffmanTree();
+//                ht.setKarakter(charArray[i]);
+//            }
+//        }
         
         HashMap<Character, Integer> tree = new HashMap<Character, Integer>();
         HashMap<Character, Integer> checkMap = new HashMap<Character, Integer>();
         
-        int lowest1 = 100, lowest2 = 100;
-        boolean isFinished = false;
+//        ArrayList<HashMap> mapQueue = new ArrayList<HashMap>();
         
-        while(isFinished == false){
-            for(char i : map.keySet()){
-                if(map.get(i) < lowest1){
-                    lowest1 = map.get(i);
-                }
-                else{
-                    if(map.get(i) < lowest2){
-                        lowest2 = map.get(i);
-                    }
-                }
-            }
+//        boolean isFinished = false;
+//        boolean isTaken = false;
+        
+//        while(isFinished == false){
+//            int lowest1 = 100, lowest2 = 100;
+//            
+//            for(char i : map.keySet()){
+//                if(map.get(i) < lowest1){
+//                    for(char j : tree.keySet()){
+//                        if(i == j){
+//                            isTaken = true;
+//                        }
+//                    }
+//                    if(isTaken == false){
+//                        lowest1 = map.get(i);
+//                    }
+//                }
+//                else{
+//                    if(map.get(i) < lowest2){
+//                        for(char j : tree.keySet()){
+//                            if(i == j){
+//                                isTaken = true;
+//                            }
+//                        }
+//                        if(isTaken == false){
+//                            lowest2 = map.get(i);
+//                        
+//                        }
+//                    }
+//                }
+//            }
     //        
     //        The Second For is for inserting the data into the hasmap that will be inserted unto the Huffman Tree
     //        
+//            for(char i : map.keySet()){
+//                if(map.get(i) == lowest1){
+//                    map.put(i, map.get(i));
+//                }
+//                if(map.get(i) == lowest2){
+//                    map.put(i, map.get(i));
+//                }
+//            }
+
+//            System.out.println(tree);
+
             for(char i : map.keySet()){
-                if(map.get(i) == lowest1){
-                    tree.put(i, map.get(i));
-                }
-                if(map.get(i) == lowest2){
-                    tree.put(i, map.get(i));
-                }
+//                checkMap.put(i, tree.get(i));
+                HuffmanTree ht = new HuffmanTree();
+                ht.setKarakter(i);
+                ht.setOccurance(map.get(i));
+                ht.setLeft(null);
+                ht.setRight(null);
+                
+                queue.add(ht);
             }
-
-            System.out.println(tree);
-
-            for(char i : tree.keySet()){
-                checkMap.put(i, tree.get(i));
-            }
-
-            tree.clear();
             
-            if(map == checkMap){
-                isFinished = true;
+            HuffmanTree root = null;
+            
+            while(queue.size() > 1){
+                HuffmanTree x = queue.peek();
+                queue.poll();
+                
+                HuffmanTree y = queue.peek();
+                queue.poll();
+                
+                HuffmanTree z = new HuffmanTree();
+                
+                z.setOccurance(x.getOccurance() + y.getOccurance());
+                z.setKarakter('-');
+                z.setLeft(x);
+                z.setRight(y);
+                
+                root = z;
+                
+                queue.add(z);
             }
-        }
+            
+            printCode(root, "");
+            
+//            tree.clear();
+//            
+//            if(map == checkMap){
+//                isFinished = true;
+//            }
+//        }
     }
     
-    public void pembentukanPreFixCode(){
+    public void printCode(HuffmanTree root, String s) 
+    { 
+  
+        // base case; if the left and right are null 
+        // then its a leaf node and we print 
+        // the code s generated by traversing the tree. 
+        if (root.getLeft() == null
+            && root.getRight() == null
+            && Character.isLetter(root.getKarakter())) { 
+  
+            // c is the character in the node 
+            System.out.println(root.getKarakter() + ":" + s); 
+  
+            return; 
+        } 
+  
+        // if we go to left then add "0" to the code. 
+        // if we go to the right add"1" to the code. 
+  
+        // recursive calls for left and 
+        // right sub-tree of the generated tree. 
+        printCode(root.getLeft(), s + "0"); 
+        printCode(root.getRight(), s + "1"); 
+    } 
+    
+    public void pembentukanPreFixCode(HashMap<Character, Integer> checkMap){
         //Prefix = Root, L, R
         //left=0, right=1
         
+        
+        
+//        HuffmanTree Tree = new model.HuffmanTree(0, 0, true, TreeL, TreeR);
         
     }
     
